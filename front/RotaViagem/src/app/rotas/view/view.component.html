@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>View course</h1>
+
+    <a href="#" routerLink="/courses/index" class="btn btn-primary">Back</a>
+    <br />
+    <br />
+    <form [formGroup]="form"  >
+    <div>
+        <strong>ID:</strong>
+        <p>{{ courses.id }}</p>
+    </div>
+
+    <div>
+        <strong>Name:</strong>
+        <p>{{ courses.name }}</p>
+    </div>
+    <div>
+        <strong>Creation Date:</strong>
+        <p>{{ courses.creation_date }}</p>
+    </div>
+    </form>
+    <br />
+</div>
