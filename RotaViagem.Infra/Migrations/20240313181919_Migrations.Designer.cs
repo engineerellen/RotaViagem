@@ -12,7 +12,7 @@ using RotaViagem.Infra.Context;
 namespace RotaViagem.Infra.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240312221100_Migrations")]
+    [Migration("20240313181919_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

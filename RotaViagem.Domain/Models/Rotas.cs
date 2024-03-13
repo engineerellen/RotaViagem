@@ -7,11 +7,11 @@ namespace RotaViagem.Domain.Models
     {
         [Required]
         [StringLength(3, MinimumLength = 3)]
-        public string? Origem { get; set; }
+        public string Origem { get; set; }
 
         [Required]
         [StringLength(3, MinimumLength = 3)]
-        public string? Destino { get; set; }
+        public string Destino { get; set; }
 
         [Required]
         [Range(0.01, 9999999999999999.99)]

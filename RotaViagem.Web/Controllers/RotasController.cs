@@ -80,7 +80,6 @@ namespace RotaViagem.Web.Controllers
                 var melhorRota = new RotasServices(_objRouteRepository).EncontrarMelhorRota(origem, destino);
                 var retorno = JsonConvert.SerializeObject(melhorRota);
                  return Ok(retorno);
-              
             }
             catch (Exception ex)
             {

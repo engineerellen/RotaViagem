@@ -1,7 +1,6 @@
 ﻿
 using RotaViagem.Domain.Interfaces;
 using RotaViagem.Domain.Models;
-using RotaViagem.Infra.Migrations;
 
 namespace RotaViagem.Services
 {
@@ -15,24 +14,21 @@ namespace RotaViagem.Services
         {
             _objRouteRepository = oRepository;
         }
-        public string EncontrarMelhorRota(string? origem, string? destino)
+        public string EncontrarMelhorRota(string origem, string destino)
         {
             rotas = _objRouteRepository.GetAll().ToList();
 
-            var melhorRota = CalcularMelhorRota(rotas , origem, destino);
-
+            var melhorRota = CalcularMelhorRota(rotas, origem, destino);
 
             // Exibindo o resultado
             if (melhorRota == null)
                 return $"Não foi possível encontrar uma rota de {origem} para {destino}.";
             else
-               return $"A melhor rota de {origem} para {destino} é: {melhorRota} ao custo de ${CalcularCustoRota(rotas, melhorRota)}";
-
-
+                return $"A melhor rota de {origem} para {destino} é: {melhorRota} ao custo de ${CalcularCustoRota(rotas, melhorRota)}";
         }
 
 
-        public static string CalcularMelhorRota(List<Rotas> rotas, string origem, string destino)
+        private static string CalcularMelhorRota(List<Rotas> rotas, string origem, string destino)
         {
             var caminhos = new Dictionary<string, string>();
             caminhos[origem] = origem;
@@ -63,7 +59,7 @@ namespace RotaViagem.Services
             return caminhos[destino];
         }
 
-        public static decimal CalcularCustoRota(List<Rotas> rotas, string rota)
+        private static decimal CalcularCustoRota(List<Rotas> rotas, string rota)
         {
             var cidades = rota.Split(" - ");
             decimal custoTotal = 0;
@@ -77,7 +73,5 @@ namespace RotaViagem.Services
 
             return custoTotal;
         }
-
-
     }
 }
