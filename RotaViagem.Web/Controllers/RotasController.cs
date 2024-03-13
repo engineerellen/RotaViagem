@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RotaViagem.Domain.Interfaces;
 using RotaViagem.Domain.Models;
 using RotaViagem.Services;
@@ -46,7 +47,7 @@ namespace RotaViagem.Web.Controllers
         }
 
         [HttpPost("save")]
-        public ActionResult<Rotas> Save(Rotas route)
+        public IActionResult Save(Rotas route)
         {
             try
             {
@@ -58,7 +59,7 @@ namespace RotaViagem.Web.Controllers
                 {
                     _objRouteRepository.Save(route);
 
-                    return Ok("Rota adicionada com sucesso!");
+                    return Ok(route);
                 }
 
                 else
@@ -71,14 +72,15 @@ namespace RotaViagem.Web.Controllers
             }
         }
 
-        [HttpPost("findBestRoute")]
-        public ActionResult<string> FindBestRoute(string origem, string destino, List<Rotas[]> lstRotas)
+        [HttpGet("findBestRoute")]
+        public IActionResult FindBestRoute(string origem, string destino)
         {
             try
             {
-                var melhorRota = new RotasServices(lstRotas).EncontrarMelhorRota(origem, destino);
-
-                return Ok(melhorRota);
+                var melhorRota = new RotasServices(_objRouteRepository).EncontrarMelhorRota(origem, destino);
+                var retorno = JsonConvert.SerializeObject(melhorRota);
+                 return Ok(retorno);
+              
             }
             catch (Exception ex)
             {
@@ -86,8 +88,8 @@ namespace RotaViagem.Web.Controllers
             }
         }
 
-        [HttpPatch("update")]
-        public ActionResult<Rotas> Update(Rotas route)
+        [HttpPut]
+        public IActionResult Update([FromBody] Rotas route)
         {
             try
             {
@@ -99,7 +101,7 @@ namespace RotaViagem.Web.Controllers
                 if (isOK)
                 {
                     _objRouteRepository.Update(route);
-                    return Ok("Atualizado com sucesso!");
+                    return Ok(route);
                 }
 
                 else

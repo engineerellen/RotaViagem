@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Calcular Melhor rota</h1>
+
+    <a href="#" routerLink="/rotas/index" class="btn btn-primary">Voltar</a>
+    <br />
+    <br />
+    <div>
+        <div class="form-group">
+            <label for="origem">Origem:</label>
+            <input type="text" id="origem" [(ngModel)]="origem" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" [(ngModel)]="destino" class="form-control">
+        </div>
+        <br />
+        <button (click)="calcularRota()" class="btn btn-success">Calcular Rota</button>
+        <br />
+        <br />
+        <div class="form-group">
+            <div *ngIf="resultado">
+                <p><b>Rota Calculada:</b></p>
+                <h4>{{ resultado }}</h4>
+            </div>
+        </div>
+    </div>
+</div>

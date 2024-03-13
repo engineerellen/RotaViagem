@@ -1,5 +1,6 @@
-export interface courses {
+export interface rotas {
     id: string;
-    name: string;
-    creation_date: string;
+    origem: string;
+    destino: string;
+    valor: string;
 }

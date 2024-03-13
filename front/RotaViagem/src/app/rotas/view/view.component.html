@@ -1,22 +1,26 @@
 <div class="container">
-    <h1>View course</h1>
+    <h1>Exibir Rota</h1>
 
-    <a href="#" routerLink="/courses/index" class="btn btn-primary">Back</a>
+    <a href="#" routerLink="/rotas/index" class="btn btn-primary">Back</a>
     <br />
     <br />
     <form [formGroup]="form"  >
     <div>
         <strong>ID:</strong>
-        <p>{{ courses.id }}</p>
+        <p>{{ rotas.id }}</p>
     </div>
 
     <div>
-        <strong>Name:</strong>
-        <p>{{ courses.name }}</p>
+        <strong>Origem:</strong>
+        <p>{{ rotas.origem }}</p>
     </div>
     <div>
-        <strong>Creation Date:</strong>
-        <p>{{ courses.creation_date }}</p>
+        <strong>Destino:</strong>
+        <p>{{ rotas.destino }}</p>
+    </div>
+    <div>
+        <strong>Valor:</strong>
+        <p>{{ rotas.valor }}</p>
     </div>
     </form>
     <br />

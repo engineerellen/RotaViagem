@@ -4,12 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
     
-import { courses } from './courses';
+import { rotas } from './rotas';
      
 @Injectable({
   providedIn: 'root'
 })
-export class coursesService {
+export class rotasService {
      
   private apiURL = "https://localhost:7219/api";
      
@@ -23,15 +23,15 @@ export class coursesService {
      
   getAll(): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/Courses/get')
+    return this.httpClient.get(this.apiURL + '/rotas/get')
     .pipe(
       catchError(this.errorHandler)
     )
   }
      
-  create(courses:courses): Observable<any> {
+  create(rotas:rotas): Observable<any> {
 
-    return this.httpClient.post(this.apiURL + '/courses/Save/', JSON.stringify(courses), this.httpOptions)
+    return this.httpClient.post(this.apiURL + '/rotas/Save/', JSON.stringify(rotas), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -39,22 +39,22 @@ export class coursesService {
      
   find(id:string): Observable<any> {
 
-    return this.httpClient.get(this.apiURL + '/courses/getById?id=' + id)
+    return this.httpClient.get(this.apiURL + '/rotas/getById?id=' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
      
-  update( id:string, courses:courses): Observable<any> {
-    courses.id = id;
-    return this.httpClient.put(this.apiURL + '/courses/Update/' , JSON.stringify(courses), this.httpOptions)
+  update( id:string, rotas:rotas): Observable<any> {
+    rotas.id = id;
+    return this.httpClient.put(this.apiURL + '/rotas/' , JSON.stringify(rotas), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
      
   delete(id:string){
-    return this.httpClient.delete(this.apiURL + '/courses/' + id, this.httpOptions)
+    return this.httpClient.delete(this.apiURL + '/rotas/' + id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { coursesService } from '../courses.service';
-import { courses } from '../courses';
+import { rotasService } from '../rotas.service';
+import { rotas } from '../rotas';
 
 @Component({
   selector: 'app-index',
@@ -9,21 +9,21 @@ import { courses } from '../courses';
 })
 export class IndexComponent implements OnInit {
 
-  coursess: courses[] = [];
+  rotass: rotas[] = [];
 
-  constructor(public coursesService: coursesService) { }
+  constructor(public rotasService: rotasService) { }
 
   ngOnInit(): void {
-    this.coursesService.getAll().subscribe((data: courses[]) => {
-      this.coursess = data;
-      console.log(this.coursess);
+    this.rotasService.getAll().subscribe((data: rotas[]) => {
+      this.rotass = data;
+      console.log(this.rotass);
     })
   }
 
-  deletecourses(id: string) {
+  deleterotas(id: string) {
     if (window.confirm("Do you you want to delete this course?")) {
-      this.coursesService.delete(id).subscribe(res => {
-        this.coursess = this.coursess.filter(item => item.id !== id);
+      this.rotasService.delete(id).subscribe(res => {
+        this.rotass = this.rotass.filter(item => item.id !== id);
         console.log('course deleted!');
       })
     }
